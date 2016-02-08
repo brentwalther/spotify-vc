@@ -32,5 +32,6 @@ gem 'byebug', group: [:development, :test]
 gem 'devise'
 gem 'figaro' # Control environment variables
 gem 'haml' # For prettier views
+gem "haml-rails", "~> 0.9"
 gem 'omniauth-spotify' # omniauth strategy for spotify
 gem 'rspotify' # Spotify Web API wrapper
