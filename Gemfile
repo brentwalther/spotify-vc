@@ -31,7 +31,6 @@ gem 'byebug', group: [:development, :test]
 # Custom gems
 gem 'devise'
 gem 'figaro' # Control environment variables
+gem 'haml' # For prettier views
 gem 'omniauth-spotify' # omniauth strategy for spotify
 gem 'rspotify' # Spotify Web API wrapper
-
-
