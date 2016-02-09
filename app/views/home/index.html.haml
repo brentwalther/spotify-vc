@@ -1,1 +1,16 @@
 %h1 Welcome to SpotifyVC
+
+- unless @playlists.empty?
+  %table.full-width
+    %thead
+      %tr
+        %th Playlist Name
+        %th Owner
+        %th Compare
+    %tbody
+      - @playlists.each do |playlist|
+        %tr
+          %td= playlist.name
+          %td= owner_name(@playlist_owners, playlist)
+          %td= link_to "Compare", playlist_path(owner_id: playlist.owner.id, id: playlist.id)
+  %p= @playlists

@@ -1,0 +1,9 @@
+.row
+  .twelve.columns
+    .u-pull-right
+      - if user_signed_in?
+        Signed in as:
+        = current_user.email
+        = link_to "(Sign out)", destroy_user_session_path, :method => :delete
+      - else
+        = link_to "Sign in with Spotify", user_omniauth_authorize_path(:spotify)

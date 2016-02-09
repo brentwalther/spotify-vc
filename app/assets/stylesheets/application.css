@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+ .full-width {
+  width: 100%;
+ }
+
+table.table-condensed td,
+table.table-condensed th {
+  padding: 4px 15px;
+}
+
+table.table-condensed td:first-child,
+table.table-condensed th:first-child {
+  padding-left: 0px;

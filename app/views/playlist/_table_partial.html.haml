@@ -1,0 +1,13 @@
+%h3= playlist.name
+%table.full-width.table-condensed
+  %thead
+    %tr
+      %th Song
+      %th Artist
+      %th Album
+  %tbody
+    - tracks.each do |track|
+      %tr
+        %td= track.name
+        %td= track_artists(track)
+        %td= track.album.name
