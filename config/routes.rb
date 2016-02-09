@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root to: "home#index"
-  get ":owner_id/playlist/:id" => "playlist#show", as: "playlist"
+  get ":owner_id/playlist/:id" => "playlist#show", as: "playlist_show"
+  get ":owner_id/playlist/:id/compare" => "playlist#compare", as: "playlist_compare"
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   # Example of regular route:

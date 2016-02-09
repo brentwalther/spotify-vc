@@ -1,7 +1,7 @@
 %h1 Welcome to SpotifyVC
 
 - unless @playlists.empty?
-  %table.full-width
+  %table.u-full-width
     %thead
       %tr
         %th Playlist Name
@@ -10,7 +10,7 @@
     %tbody
       - @playlists.each do |playlist|
         %tr
-          %td= playlist.name
+          %td= link_to playlist.name, playlist_show_path(owner_id: playlist.owner.id, id: playlist.id)
           %td= owner_name(@playlist_owners, playlist)
-          %td= link_to "Compare", playlist_path(owner_id: playlist.owner.id, id: playlist.id)
+          %td= link_to "Compare", playlist_compare_path(owner_id: playlist.owner.id, id: playlist.id)
   %p= @playlists

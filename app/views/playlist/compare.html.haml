@@ -1,0 +1,11 @@
+.row
+  .twelve.columns
+    = link_to "Back to home", root_path
+.row
+  .six.columns
+    - if @other_playlist.nil?
+      = render partial: "playlist/playlist_select_form"
+    - else
+      = render partial: "playlist/table_partial", locals: { playlist: @other_playlist, tracks: @other_tracks }
+  .six.columns
+    = render partial: "playlist/table_partial", locals: { playlist: @playlist, tracks: @tracks }

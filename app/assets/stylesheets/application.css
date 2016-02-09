@@ -14,10 +14,6 @@
  *= require_self
  */
 
- .full-width {
-  width: 100%;
- }
-
 table.table-condensed td,
 table.table-condensed th {
   padding: 4px 15px;

@@ -1,0 +1,18 @@
+%h3 Select a playlist
+%form#track-listing-search-form
+  %label(for="search-by") Search by...
+  %select#search-by.u-full-width(name="search-by")
+    %option(value="user") User
+    %option(value="album") Album
+    %option(value="artist") Artist
+  %input#search-string.u-full-width(name="search-string" type="text" placeholder="Name or ID")
+
+%table.u-full-width.table-condensed
+  %thead
+    %tr
+      %th Results
+  %tbody
+    - @results.each do |result|
+      %tr
+        %td= result.name
+
