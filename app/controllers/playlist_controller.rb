@@ -1,7 +1,5 @@
 class PlaylistController < ApplicationController
 
-  before_filter :search_spotify
-
   TRACKS_PER_PAGE = 100
 
   def show
@@ -10,7 +8,7 @@ class PlaylistController < ApplicationController
   end
 
   def compare
-    @other_playlist, @other_tracks = session[:comparison_playlist]
+    @results = search_spotify
     @playlist = RSpotify::Playlist.find(owner_id, playlist_id)
     @tracks = tracks_for_playlist(@playlist)
   end

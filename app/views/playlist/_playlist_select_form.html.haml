@@ -1,18 +1,21 @@
-%h3 Select a playlist
+%h3 Select tracks to compare
 %form#track-listing-search-form
-  %label(for="search-by") Search by...
-  %select#search-by.u-full-width(name="search-by")
-    %option(value="user") User
+  %label(for="search_by") Search by...
+  %select#search_by.u-full-width(name="search_by")
+    %option(value="user_id") User
     %option(value="album") Album
     %option(value="artist") Artist
-  %input#search-string.u-full-width(name="search-string" type="text" placeholder="Name or ID")
+  %input#search_string.u-full-width(name="search_string" type="text" placeholder="Name or ID")
 
 %table.u-full-width.table-condensed
   %thead
     %tr
       %th Results
   %tbody
-    - @results.each do |result|
+    - if @results.nil?
       %tr
-        %td= result.name
-
+        %td No results found
+    - else
+      - @results[:data].each do |result|
+        %tr
+          %td= link_to result.name, request.parameters.merge({ search_by: "#{result.type}_id", search_string: result.id })
