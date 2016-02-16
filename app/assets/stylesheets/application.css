@@ -14,6 +14,11 @@
  *= require_self
  */
 
+div#wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
 table.table-condensed td,
 table.table-condensed th {
   padding: 4px 15px;
@@ -25,4 +30,8 @@ tr.del {
 
 tr.add {
   background-color: rgba(92, 184, 92, 0.8);
+}
+
+tfoot tr td {
+  border-bottom: none;
 }

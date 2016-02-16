@@ -43,7 +43,7 @@ class PlaylistController < ApplicationController
   end
 
   def diff_tracklists(tracklists)
-    return [ tracklists, nil ] if tracklists.size < 2
+    return [ tracklists, [ nil ] ] if tracklists.size < 2
 
     first_list = tracklists.first.map(&:id).sort
     diff_results = tracklists.last.map { |track| first_list.include?(track.id) }

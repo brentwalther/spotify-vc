@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  ALLOWED_SEARCH_METHODS = %w( album artist album_id artist_id user_id ) # values for which we can constantize into RSpotify classes
+  ALLOWED_SEARCH_METHODS = %w( album artist album_id artist_id user_id playlist_id ) # values for which we can constantize into RSpotify classes
 
   def authenticate_with_spotify
     RSpotify.authenticate(ENV["SPOTIFY_CLIENT_ID"], ENV["SPOTIFY_CLIENT_SECRET"])
@@ -33,13 +33,21 @@ class ApplicationController < ActionController::Base
 
     if is_search_by_id
       begin
-        result = klass.find(query)
+        # Use the classes #find method to obtain the object for the particular ID. In the case of
+        # playlists, we expect the playlist owner's ID to be passed in as well.
+        result = if search_by.eql?('playlist')
+          klass.find(params.require('other_owner_id'), query)
+        else
+          klass.find(query)
+        end
+
+        # After the object is found, we need to end up returning the list of data that is displayed
         case search_by
-        when "album"
+        when 'album', 'playlist'
           result
-        when "user"
+        when 'user'
           result.playlists.map { |p| p.owner.complete!; p }
-        when "artist"
+        when 'artist'
           result.albums(limit: 50, market: 'US')
         end
       rescue RestClient::ResourceNotFound, RestClient::BadRequest

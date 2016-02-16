@@ -11,3 +11,6 @@
         %td= track.name
         %td= track_artists(track)
         %td= track.album.name
+  %tfoot
+    %tr
+      %td(colspan="3")= "#{tracks.size} tracks found."

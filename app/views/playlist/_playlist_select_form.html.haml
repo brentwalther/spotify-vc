@@ -18,4 +18,4 @@
     - else
       - @result.each do |result|
         %tr
-          %td= link_to result.name, request.parameters.merge({ search_by: "#{result.type}_id", search_string: result.id })
+          %td= link_to result.name, request.parameters.merge({ other_owner_id: "#{result.owner.id}", search_by: "#{result.type}_id", search_string: result.id })
