@@ -30,6 +30,7 @@ gem 'byebug', group: [:development, :test]
 
 # Custom gems
 gem 'devise'
+gem 'factory_girl_rails', group: [:development, :test] # factory girl makes for easy object creation in tests
 gem 'figaro' # Control environment variables
 gem 'haml' # For prettier views
 gem "haml-rails", "~> 0.9"
