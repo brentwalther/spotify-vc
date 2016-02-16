@@ -35,19 +35,18 @@ class ApplicationController < ActionController::Base
       begin
         result = klass.find(query)
         case search_by
-        when "user"
-          { complete: false, data: result.playlists.map { |p| p.owner.complete!; p } }
         when "album"
-          { complete: true, data: result }
+          result
+        when "user"
+          result.playlists.map { |p| p.owner.complete!; p }
         when "artist"
-          { complete: false, data: result.albums }
+          result.albums(limit: 50, market: 'US')
         end
       rescue RestClient::ResourceNotFound, RestClient::BadRequest
         nil
       end
     else
-      { complete: false, data: klass.search(query) }
+      klass.search(query, market: 'US')
     end
-
   end
 end

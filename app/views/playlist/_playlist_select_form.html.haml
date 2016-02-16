@@ -12,10 +12,10 @@
     %tr
       %th Results
   %tbody
-    - if @results.nil?
+    - if @result.nil?
       %tr
         %td No results found
     - else
-      - @results[:data].each do |result|
+      - @result.each do |result|
         %tr
           %td= link_to result.name, request.parameters.merge({ search_by: "#{result.type}_id", search_string: result.id })

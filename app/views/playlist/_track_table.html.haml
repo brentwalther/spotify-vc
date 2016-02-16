@@ -6,8 +6,8 @@
       %th Artist
       %th Album
   %tbody
-    - tracks.each do |track|
-      %tr
+    - tracks.each_with_index do |track, i|
+      %tr(class="#{ diff_results.nil? ? "" : (diff_results[i] ? "add" : "del")}")
         %td= track.name
         %td= track_artists(track)
         %td= track.album.name

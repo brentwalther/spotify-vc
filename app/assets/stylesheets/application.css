@@ -19,6 +19,10 @@ table.table-condensed th {
   padding: 4px 15px;
 }
 
-table.table-condensed td:first-child,
-table.table-condensed th:first-child {
-  padding-left: 0px;
+tr.del {
+  background-color: rgba(217, 83, 79, .8);
+}
+
+tr.add {
+  background-color: rgba(92, 184, 92, 0.8);
+}

@@ -8,9 +8,20 @@ class PlaylistController < ApplicationController
   end
 
   def compare
-    @results = search_spotify
+    @result = search_spotify # collect search result if search parameters exist
     @playlist = RSpotify::Playlist.find(owner_id, playlist_id)
-    @tracks = tracks_for_playlist(@playlist)
+    @tracklist_names = [ @playlist.name ]
+    @tracklists = [ tracks_for_playlist(@playlist) ]
+
+    if @result.is_a?(RSpotify::Album)
+      @tracklist_names.push(@result.name)
+      @tracklists.push(@result.tracks)
+    elsif @result.is_a?(RSpotify::Playlist)
+      @tracklist_names.push(@result.name)
+      @tracklists.push(tracks_for_playlist(@result))
+    end
+
+    @tracklists, @diff_results = diff_tracklists(@tracklists)
   end
 
   private
@@ -29,5 +40,14 @@ class PlaylistController < ApplicationController
       limit = TRACKS_PER_PAGE
       track_list = track_list + playlist.tracks(offset: offset, limit: limit)
     end
+  end
+
+  def diff_tracklists(tracklists)
+    return [ tracklists, nil ] if tracklists.size < 2
+
+    first_list = tracklists.first.map(&:id).sort
+    diff_results = tracklists.last.map { |track| first_list.include?(track.id) }
+
+    [ tracklists, [ nil, diff_results ] ]
   end
 end

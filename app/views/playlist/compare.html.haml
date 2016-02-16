@@ -3,9 +3,9 @@
     = link_to "Back to home", root_path
 .row
   .six.columns
-    - if @results.nil? || !@results[:complete]
+    = render partial: "playlist/track_table", locals: { name: @tracklist_names.first, tracks: @tracklists.first, diff_results: @diff_results.first }
+  .six.columns
+    - if @tracklists.size == 1
       = render partial: "playlist/playlist_select_form"
     - else
-      = render partial: "playlist/table_partial", locals: { name: @results[:data].name, tracks: @results[:data].tracks }
-  .six.columns
-    = render partial: "playlist/table_partial", locals: { name: @playlist.name, tracks: @tracks }
+      = render partial: "playlist/track_table", locals: { name: @tracklist_names.last, tracks: @tracklists.second, diff_results: @diff_results.second }
