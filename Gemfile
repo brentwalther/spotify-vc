@@ -34,4 +34,5 @@ gem 'figaro' # Control environment variables
 gem 'haml' # For prettier views
 gem "haml-rails", "~> 0.9"
 gem 'omniauth-spotify' # omniauth strategy for spotify
+gem 'rspec-rails', '~> 3.0', group: [:development, :test] # rspec is better than regular tests
 gem 'rspotify' # Spotify Web API wrapper
