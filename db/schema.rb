@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208202724) do
+ActiveRecord::Schema.define(version: 20160218173615) do
+
+  create_table "playlists", force: true do |t|
+    t.string   "spotify_id"
+    t.string   "owner_id"
+    t.string   "parent_playlist_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

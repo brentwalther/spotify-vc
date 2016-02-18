@@ -29,6 +29,7 @@ gem 'spring',        group: :development
 gem 'byebug', group: [:development, :test]
 
 # Custom gems
+gem 'annotate', '~> 2.6.10', group: :development # annotate models and routes with useful comments
 gem 'devise'
 gem 'factory_girl_rails', group: [:development, :test] # factory girl makes for easy object creation in tests
 gem 'figaro' # Control environment variables
