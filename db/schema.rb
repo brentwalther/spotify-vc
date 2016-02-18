@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218173615) do
+ActiveRecord::Schema.define(version: 20160218182452) do
 
   create_table "playlists", force: true do |t|
     t.string   "spotify_id"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 20160218173615) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "snapshots", force: true do |t|
+    t.integer  "playlist_id"
+    t.text     "track_list"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "snapshots", ["playlist_id"], name: "index_snapshots_on_playlist_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
