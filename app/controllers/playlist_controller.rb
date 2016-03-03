@@ -3,6 +3,8 @@ class PlaylistController < ApplicationController
   TRACKS_PER_PAGE = 100
 
   def show
+    db_playlist = Playlist.find_or_create_by(spotify_id: playlist_id, owner_id: owner_id)
+    @snapshots = db_playlist.snapshots
     @playlist = RSpotify::Playlist.find(owner_id, playlist_id)
     @tracks = tracks_for_playlist(@playlist)
   end
