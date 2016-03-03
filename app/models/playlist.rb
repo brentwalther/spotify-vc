@@ -11,6 +11,7 @@
 #
 
 class Playlist < ActiveRecord::Base
+  has_many :snapshots
 
   def forked?
     parent_playlist_id.present?

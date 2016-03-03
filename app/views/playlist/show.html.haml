@@ -3,4 +3,4 @@
     = link_to "Back to home", root_path
 .row
   .twelve.columns
-    = render partial: "playlist/table_partial", locals: {playlist: @playlist, tracks: @tracks}
+    = render partial: "playlist/track_table", locals: { name: @playlist.name, tracks: @tracks, diff_results: nil }
