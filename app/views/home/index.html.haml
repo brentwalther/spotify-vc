@@ -6,11 +6,15 @@
       %tr
         %th Playlist Name
         %th Owner
+        %th Last Snapshotted
         %th Compare
     %tbody
-      - @playlists.each do |playlist|
+      - @playlists.each_with_index do |playlist, i|
         %tr
           %td= link_to playlist.name, playlist_show_path(owner_id: playlist.owner.id, id: playlist.id)
           %td= (playlist.owner.display_name || playlist.owner.id)
+          - unless @playlist_snapshots[i].nil?
+            %td= @playlist_snapshots[i].created_at
+          - else
+            %td Never shapshotted
           %td= link_to "Compare", playlist_compare_path(owner_id: playlist.owner.id, id: playlist.id)
-  %p= @playlists
