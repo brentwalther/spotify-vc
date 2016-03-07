@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get ":owner_id/playlist/:id/compare" => "playlist#compare", as: "playlist_compare"
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
+  post ":owner_id/playlist/:id/snapshot" => "snapshot#create", as: "snapshot_create"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

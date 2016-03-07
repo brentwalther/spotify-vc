@@ -1,4 +1,12 @@
 %h3= name
+%p
+  - if @snapshots.empty?
+    Never snapshotted!
+    = link_to "Snapshot.", snapshot_create_path, method: :post
+  - else
+    = "(#{@snapshots.size} snapshots)"
+    Last snapshotted
+    = @snapshots.last.created_at
 %table.u-full-width.table-condensed
   %thead
     %tr
